@@ -10,7 +10,6 @@ const LoginScreen = ({ navigation }: RootStackScreenProps<'Login'>) => {
 
   const handleSignIn = () => {
     dispatch(signInUser())
-    navigation.replace('Root')
   }
 
   return (

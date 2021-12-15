@@ -11,7 +11,6 @@ const ModalScreen = ({ navigation }: RootStackScreenProps<'Modal'>) => {
 
   const handleLogOut = () => {
     dispatch(logOutUser())
-    navigation.replace('Login')
   }
 
   return (
