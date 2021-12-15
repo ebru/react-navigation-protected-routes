@@ -4,7 +4,7 @@ import { Text, View } from '../components/Themed';
 
 import { RootStackScreenProps } from '../types';
 
-export default function LoginScreen({ navigation }: RootStackScreenProps<'Login'>) {
+const LoginScreen = ({ navigation }: RootStackScreenProps<'Login'>) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login Screen</Text>
@@ -35,3 +35,5 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+
+export default LoginScreen;

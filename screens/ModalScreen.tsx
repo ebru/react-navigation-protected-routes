@@ -2,11 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
+// import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootStackScreenProps } from '../types';
 
-export default function ModalScreen({ navigation }: RootStackScreenProps<'Modal'>) {
+const ModalScreen = ({ navigation }: RootStackScreenProps<'Modal'>) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Profile</Text>
@@ -47,3 +47,5 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+
+export default ModalScreen;
