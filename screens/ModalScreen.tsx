@@ -1,19 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
-
-// import EditScreenInfo from '../components/EditScreenInfo';
+import { useDispatch, useSelector } from 'react-redux';
 import { Text, View } from '../components/Themed';
 import { RootStackScreenProps } from '../types';
+import { logOutUser } from '../redux/auth/actions';
 
 const ModalScreen = ({ navigation }: RootStackScreenProps<'Modal'>) => {
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    dispatch(logOutUser())
+    navigation.replace('Login')
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Profile</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      {/* <EditScreenInfo path="/screens/ModalScreen.tsx" /> */}
 
-      <TouchableOpacity onPress={() => navigation.replace('Login')} style={styles.link}>
+      <TouchableOpacity onPress={handleLogOut} style={styles.link}>
         <Text style={styles.linkText}>Logout</Text>
       </TouchableOpacity>
 

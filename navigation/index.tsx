@@ -1,10 +1,12 @@
+import React from 'react';
+import { ColorSchemeName, Pressable } from 'react-native';
+import { useSelector } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
-
+import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
+import { isSignedInSelector } from '../redux/auth/selectors'
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import LoginScreen from '../screens/LoginScreen';
@@ -12,10 +14,12 @@ import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+const Stack = createNativeStackNavigator<RootStackParamList>();
+const BottomTab = createBottomTabNavigator<RootTabParamList>();
+
+const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => {
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
@@ -25,9 +29,11 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
   );
 }
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const RootNavigator = () => {
+  const isSignedIn = useSelector(isSignedInSelector);
 
-function RootNavigator() {
+  console.log('isSignedIn', isSignedIn);
+
   return (
     <Stack.Navigator>
       <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
@@ -40,9 +46,7 @@ function RootNavigator() {
   );
 }
 
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
-
-function BottomTabNavigator() {
+const BottomTabNavigator = () => {
   const colorScheme = useColorScheme();
 
   return (
@@ -85,9 +89,11 @@ function BottomTabNavigator() {
   );
 }
 
-function TabBarIcon(props: {
+const TabBarIcon = (props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
-}) {
+}) => {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
+
+export default Navigation

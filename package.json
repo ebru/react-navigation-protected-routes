@@ -34,6 +34,7 @@
     "react-native-web": "0.17.1",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "reselect": "^4.1.5"
   },
@@ -44,6 +45,9 @@
     "@types/react-redux": "^7.1.20",
     "jest-expo": "~43.0.0",
     "typescript": "~4.3.5"
+  },
+  "resolutions": {
+    "react-devtools": "^4.22.0"
   },
   "private": true
 }
